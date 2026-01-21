@@ -3,10 +3,7 @@ library(tidyverse)
 library(lubridate)
 library(ggrepel)
 
-# Connect to the database
 con <- dbConnect(SQLite(), "data/birds.db")
-
-# Read the detections table
 detections <- dbReadTable(con, "detections")
 dbDisconnect(con)
 
@@ -21,6 +18,7 @@ n_days <- detections |>
   distinct(date) |>
   nrow()
 
+#Anzahl aller Erkennungen pro Tag
 detections |>
   mutate(date = as.Date(Date),
          date_group = floor_date(date, "1 days")) |>
@@ -35,6 +33,8 @@ detections |>
 
 ggsave("visualization/daily_detections.png", width = 10, height = 6, dpi = 300)
 
+
+#Verlauf der 5 Häufigsten Vogelarten
 detections |>
   filter(Com_Name %in% top_5_species) |>
   mutate(date = as.Date(Date),
@@ -54,8 +54,11 @@ detections |>
   theme_minimal() +
   theme(legend.position = "bottom")
 
-ggsave("visualization/top5_ribbon_3day.png", width = 20, height = 6, dpi = 300)
+ggsave("visualization/top5_ribbon_3day.png", width = 15, height = 6, dpi = 300)
 
+
+
+#Vergleich stündliche Aktivitäten der 5 häufigsten Vögel
 detections |>
   filter(Com_Name %in% top_5_species) |>
   mutate(
@@ -87,6 +90,8 @@ detections |>
 
 ggsave("visualization/top5_hours.png", width = 15, height = 6, dpi = 300)
 
+
+#Durchschnittliche Vogelaktivität pro Tag
 detections |>
   mutate(
     date = as.Date(Date),
@@ -119,6 +124,8 @@ detections |>
   theme_minimal()
 ggsave("visualization/avg_daily_30min.png", width = 20, height = 6, dpi = 300)
 
+
+#Anzahl an Aufnahmen per Vogelart
 pie_data <- detections |>
   mutate(date = as.Date(Date)) |>
   filter(date < (max(date, na.rm = TRUE) - 7)) |>
