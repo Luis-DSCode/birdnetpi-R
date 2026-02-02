@@ -14,7 +14,7 @@ Anfang August und September wurden größtenteils Elstern aufgenommen. Kohlmeise
 ![](visualization/top5_ribbon_3day.png)
 
 # Tägliches verhalten der Vögel
-Betrachten wir die Uhrzeiten, zu denen die Vögel da sind, kann folgendes Muster erkannt werden:
+Betrachten wir die Uhrzeiten, zu denen die Vögel erkannt werden, kann folgendes Muster erkannt werden:
 ![](visualization/avg_daily_30min.png)
 Generell kann man hierin sehen, dass die Anzahl an aufgenommenen Vögeln deutlich abnimmt, sobald die Katzen aus dem Haus und in den Garten gelassen werden, was druchschnittlich zwischen 11 und 12 Uhr geschieht.
 
